@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Let's have a meaningless fight to the death",
   "main": "index.js",
+  "repository": "git@github.com:KuroNoDev/KingdomRoyale.git",
   "dependencies": {
-    "discord.js": "^8.1.0"
+    "discord.js": "^9.2.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

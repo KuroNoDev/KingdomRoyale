@@ -7,6 +7,7 @@ let commands = new Commands(sessions)
 
 mybot.on('ready', () => {
    console.log('Let\'s have a meaningless fight to the death')
+   mybot.user.setStatus('active', 'with 6 boys and girls')
 })
 
 mybot.on('message', (message) => {
@@ -15,4 +16,4 @@ mybot.on('message', (message) => {
    commands.validate(message)
 });
 
-mybot.loginWithToken('MjE5NjczOTY0MjQ1NDE3OTk0.CqVRLA.sMtqD6ZwvfyGc1sfd64AZ4KPaHU')
+mybot.login('MjE5NjczOTY0MjQ1NDE3OTk0.Cr1vjQ.iEUUAtF18Qp4H_uogOg6HxCce6E')

@@ -1,9 +1,10 @@
-const infoMessage = require('./utils/infoMessage.js');
+const msg_info = require('./messages/info.js')
+const msg_classes = require('./messages/classes.js')
 
 module.exports = class Commands {
    constructor (sessions) {
       this.sessions = sessions
-      this.availableCommands = ['info', 'announce', 'start', 'join']
+      this.availableCommands = ['info', 'classes', 'announce', 'start', 'join']
    }
 
    validate (message) {
@@ -11,7 +12,7 @@ module.exports = class Commands {
       let param = message.content.split(' ')[2]
 
       if (this.availableCommands.indexOf(command) == -1) {
-         message.reply('« Do you really think I\'ll do that for you? You overfamilliar piece of shit! »')
+         message.reply('« Do yOu rEaLLy tHink I\'ll do thAt foR You? You ovERfamilliAr piEce of shiT! »')
          return
       }
 
@@ -20,14 +21,17 @@ module.exports = class Commands {
 
       switch (command) {
          case 'info':
-            message.channel.sendMessage(infoMessage)
+            message.channel.sendMessage(msg_info)
+            break
+         case 'classes':
+            message.channel.sendMessage(msg_classes)
             break
          case 'announce':
             message.channel.sendMessage(`« ${param} »`)
             break
          case 'start':
             if (this.sessions.hasOwnProperty(channel) === true) {
-               message.reply('« OSOI! The game already started! »')
+               message.reply('« The gAme aLready staRted! »')
                return false
             }
             this.sessions[message.channel.id] = {
@@ -39,12 +43,12 @@ module.exports = class Commands {
             break
          case 'join':
             if (this.sessions.hasOwnProperty(channel) === false) {
-               message.reply('« Are you retarded? Oh I see, you want to die by yourself? »')
+               message.reply('« arE You REtarded? Oh I sEe, yOu wAnt to pLAy by youRsElf? GeEz how boRed aRe yoU? »')
                return false
             }
 
             if (this.sessions[channel].hasOwnProperty(player) === true) {
-               message.reply('« Can\'t believe you\'re already part of the game eh?! »')
+               message.reply('« Can\'t bElieve you\'re aLreAdy part of tHe game EH?! »')
                return false
             }
 
@@ -64,11 +68,9 @@ module.exports = class Commands {
 
             classes.splice(index, 1)
 
-            message.reply('« I can see you\'re eager to participate in the game! Check your PM to know your class »')
+            message.reply('« I can sEe yOu\'rE eaGer to pArtiCipate in The game! Check your PM to know your class »')
             message.author.sendMessage(`Your role is ${this.sessions[channel][player].class}`)
             message.channel.sendMessage(`Remaining slots: ${classes.length}`)
-
-            console.log(this.sessions, this.sessions[channel].state.classes)
          default:
             return false
       }
