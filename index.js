@@ -16,4 +16,4 @@ mybot.on('message', (message) => {
    commands.validate(message)
 });
 
-mybot.login('MjE5NjczOTY0MjQ1NDE3OTk0.Cr1vjQ.iEUUAtF18Qp4H_uogOg6HxCce6E')
+mybot.login(process.env.BOT_TOKEN);
